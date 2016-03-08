@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home - NodeJS Chat App</title>
+    <link rel="stylesheet" href="/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
+    <link rel="stylesheet" href="/fonts/font-awesome-4.5.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span><span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/" class="navbar-brand">NodeJS Chat App</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <br>
+        <br>
+
+        <div id="enterChatDiv">
+            <br>
+            <p>Please enter the chatroom using the form below:</p>
+            <br>
+            <label>Username: &nbsp;</label>
+            <input style="width: 250px" type="text" id="username" /> &nbsp;&nbsp;
+            <button id="enterChatBtn" class="btn btn-success btn-sm">Enter Chat Room</button>
+        </div>
+
+        <div id="mainDiv">
+            <div class="row">
+                <div class="col-md-8">
+                    <p>Your Chat Window</p>
+                    <div id="chatDiv">
+                        <div id="chatWindowDiv"></div>
+                        <div class="row">
+                            <div class="col-md-9 col-md-offset-1">
+                                <input style="width:100%" type="text" id="chatMsg" placeholder="Type here..." />
+                            </div>
+                            <div class="col-md-2">
+                                <button id="sendMsgBtn" type="submit" class="btn btn-success btn-sm">Send</button>
+                            </div>
+                        </div>
+                        <br/>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <p>Connected Users <span id="userCount"><b></b></span></p>
+                    <div id="usersDiv">
+                        <ul id="usersList">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+</body>
+
+<footer>
+    <div class="col-md-12">
+        <a title="Source code for this website" target="_blank" href="https://github.com/vaibhavdesai137-nodejs-projects/njs-chat-app" class="btn btn-success">
+            <i class="fa fa-code fa-lg"></i>
+        </a>
+        <a title="My GitHub" target="_blank" href="https://github.com/vaibhavdesai137" class="btn btn-success">
+            <i class="fa fa-github fa-lg"></i>
+        </a>
+        <a title="My LinkedIn" target="_blank" href="https://www.linkedin.com/in/vaibhav-desai-a864aa15" class="btn btn-success">
+            <i class="fa fa-linkedin fa-lg"></i>
+        </a>
+        <a title="My Facebook" target="_blank" href="https://www.facebook.com/vaibhav.desai.165033" class="btn btn-success">
+            <i class="fa fa-facebook fa-lg"></i>
+        </a>
+    </div>
+    <div class="col-md-12">
+        <p>Vaibhav Desai</p>
+    </div>
+</footer>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/javascripts/bootstrap.js"></script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="/javascripts/chat.js"></script>
+
+</html>

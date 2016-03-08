@@ -11,7 +11,7 @@ $(function () {
     // hide the login form
     // show the chat window
     socket.on('registeredUsers', function (data) {
-        populateUsersTable(data.users);
+        populateUsersList(data.users);
         $('#enterChatDiv').hide();
         $('#mainDiv').show();
     });
@@ -42,19 +42,19 @@ function registerNewUser() {
 }
 
 // show all connected users in table
-function populateUsersTable(users) {
+function populateUsersList(users) {
 
     $('#userCount').html('[' + users.length + ']');
     for (var user in users) {
-        var row = '<tr><td>' + users[user] + '</td></tr>';
-        $('#usersTable').append(row);
+        var row = '<li>' + users[user] + '</li>';
+        $('#usersList').append(row);
     }
 }
 
 // send new chat msg to server
 function sendNewChatMsg() {
 
-    var newChatMsg = $('#textInput').val();
+    var newChatMsg = $('#chatMsg').val();
     newChatMsg = newChatMsg.trim();
 
     if (newChatMsg !== '') {
@@ -64,7 +64,7 @@ function sendNewChatMsg() {
     }
 
     // clear the text box
-    $('#textInput').val('');
+    $('#chatMsg').val('');
 }
 
 // show new chat msg from server

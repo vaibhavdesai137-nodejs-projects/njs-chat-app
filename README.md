@@ -6,8 +6,4 @@
 # Components
 
 * Express
-* Express Validators
 * SocketIO
-* Jade Templating
-* Sessions
-* Date Formatting using Moment
