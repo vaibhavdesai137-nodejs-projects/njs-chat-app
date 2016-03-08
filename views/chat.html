@@ -31,6 +31,10 @@
 
         <div id="enterChatDiv">
             <br>
+            <div id="errorDiv" class="alert alert-danger">
+                <strong>Error! </strong><span id="errorMsg"></span>
+            </div>
+            <br>
             <p>Please enter the chatroom using the form below:</p>
             <br>
             <label>Username: &nbsp;</label>
@@ -43,7 +47,9 @@
                 <div class="col-md-8">
                     <p>Your Chat Window</p>
                     <div id="chatDiv">
-                        <div id="chatWindowDiv"></div>
+                        <div id="chatWindowDiv">
+                            <ul id="chatMsgs"></ul>
+                        </div>
                         <input style="width:100%" type="text" id="chatMsgTextBox" onkeypress="sendNewChatMsg(event)" placeholder="Type here and then hit Enter to send..." />
                     </div>
                 </div>

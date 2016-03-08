@@ -8,7 +8,13 @@ body {
     background: #f9f9f9;
 }
 
-#mainDiv {}
+#errorDiv {
+    display: none;
+}
+
+#mainDiv {
+    display: none;
+}
 
 #chatDiv {
     border: 1px solid #ccc;
@@ -17,11 +23,19 @@ body {
     padding-top: 20px;
 }
 
+#chatMsgs {
+    list-style: none;
+    padding-left: 10px;
+    overflow-y: scroll;
+    line-height: 25px;
+}
+
 #chatWindowDiv {
     height: 400px;
 }
 
 #chatMsgTextBox {
+    width: 100%;
     line-height: 4em;
     border-radius: 10px;
     border: 1px solid #4cae4c;

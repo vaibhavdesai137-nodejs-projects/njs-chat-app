@@ -29,19 +29,36 @@ io.sockets.on('connection', function (socket) {
 
     // new user joined
     socket.on('registerNewUser', function (data) {
-        
+
         var username = data.username;
-        users.push(username);
-        
-        io.sockets.emit('registeredUsers', {
-            users: users
-        });
+
+        if (users.indexOf(username) === -1) {
+            users.push(username);
+            socket.username = username;
+
+            io.sockets.emit('registeredUsers', {
+                username: username,
+                users: users
+            });
+        } else {
+            io.sockets.emit('registrationFailed', {
+                username: username,
+                msg: "Username '" + username + "' already registered"
+            });
+        }
+
     });
 
     // new chat msg received
     // broadcast the same msg to everyone connected
+    // also say who the sender was
+    // also send the list of all users
     socket.on('newChatMsgFromClient', function (data) {
-        io.sockets.emit('newChatMsgFromServer', {chatMsg: data.chatMsg});
+        io.sockets.emit('newChatMsgFromServer', {
+            chatMsg: data.chatMsg,
+            sender: socket.username,
+            users: users
+        });
     });
 
 })

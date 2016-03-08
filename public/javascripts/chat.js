@@ -1,4 +1,6 @@
 var socket = io();
+var registered = false;
+var username;
 
 $(function () {
 
@@ -11,23 +13,43 @@ $(function () {
     // hide the login form
     // show the chat window
     socket.on('registeredUsers', function (data) {
-        populateUsersList(data.users);
-        $('#enterChatDiv').hide();
-        $('#mainDiv').show();
+
+        // show the chat window if we just registered 
+        // or if we were already registered
+        if (data.username === username || registered) {
+            registered = true;
+            clearErrorMsgs();
+            populateUsersList(data.users);
+            $('#enterChatDiv').hide();
+            $('#mainDiv').show();
+        }
+    });
+
+    // failed to register, username exists
+    socket.on('registrationFailed', function (data) {
+        $('#errorMsg').html(data.msg);
+        $('#errorDiv').show();
     });
 
     // show new chat msg from server
     socket.on('newChatMsgFromServer', function (data) {
-        showNewChatMsg(data.chatMsg);
+        if (registered) {
+            showNewChatMsg(data.sender, data.chatMsg);
+        }
     });
 
 });
 
+// clear error msgs on successful registration
+function clearErrorMsgs() {
+    $('#errorMsg').html('');
+    $('#errorDiv').hide();
+}
+
 // new user joining
 function registerNewUser() {
 
-    var username = $('#username').val();
-    username = username.trim();
+    username = $('#username').val().trim();
 
     if (username !== '') {
         socket.emit('registerNewUser', {
@@ -39,6 +61,7 @@ function registerNewUser() {
 // show all connected users in table
 function populateUsersList(users) {
 
+    $('#usersList').empty();
     $('#userCount').html('<b>[' + users.length + ']</b>');
     for (var user in users) {
         var row = '<li>' + users[user] + '</li>';
@@ -68,6 +91,6 @@ function sendNewChatMsg(e) {
 }
 
 // show new chat msg from server
-function showNewChatMsg(msg) {
-    $('#chatWindowDiv').append(msg + '<br>');
+function showNewChatMsg(sender, msg) {
+    $('#chatMsgs').append('<li><b>' + sender + '</b>: ' + msg + '</li>');
 }
