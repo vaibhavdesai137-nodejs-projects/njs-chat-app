@@ -1,0 +1,30 @@
+body {
+    margin-top: 50px;
+    background: #f9f9f9;
+}
+
+#enterChatWrapper {
+    
+}
+
+#mainWrapper {
+    
+}
+
+.chatWrapper {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f4f4f4;
+}
+
+.chatWindow {
+    height: 400px;
+}
+
+.usersWrapper {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #f4f4f4;
+    min-height: 200px;
+    max-height: 200px;
+}
