@@ -24,7 +24,8 @@ body {
 #chatMsgTextBox {
     line-height: 4em;
     border-radius: 10px;
-    border: 1px solid green;
+    border: 1px solid #4cae4c;
+    padding-left: 20px;
 }
 
 #chatMsgTextBox:focus {
