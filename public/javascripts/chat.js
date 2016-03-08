@@ -9,19 +9,27 @@ $(function () {
         registerNewUser();
     });
 
-    // server acknowledged with all connected users
-    // hide the login form
-    // show the chat window
-    socket.on('registeredUsers', function (data) {
+    socket.on('registeredNewUser', function (data) {
 
         // show the chat window if we just registered 
         // or if we were already registered
         if (data.username === username || registered) {
             registered = true;
             clearErrorMsgs();
-            populateUsersList(data.users);
+            $('#usernameSpan').html('<b>' + username + '</b>');
             $('#enterChatDiv').hide();
             $('#mainDiv').show();
+        }
+    });
+
+
+    // list of connected users
+    socket.on('registeredUsers', function (data) {
+
+        // show the chat window if we just registered 
+        // or if we were already registered
+        if (registered) {
+            populateUsersList(data.users);
         }
     });
 

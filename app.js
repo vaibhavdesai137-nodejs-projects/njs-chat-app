@@ -36,10 +36,12 @@ io.sockets.on('connection', function (socket) {
             users.push(username);
             socket.username = username;
 
-            io.sockets.emit('registeredUsers', {
-                username: username,
-                users: users
+            io.sockets.emit('registeredNewUser', {
+                username: username
             });
+
+            emitConnectedUsersList();
+
         } else {
             io.sockets.emit('registrationFailed', {
                 username: username,
@@ -60,6 +62,24 @@ io.sockets.on('connection', function (socket) {
             users: users
         });
     });
+
+    // new user joined
+    socket.on('disconnect', function (data) {
+
+        var index = users.indexOf(socket.username);
+        if (index !== -1) {
+            users.splice(index, 1);
+            emitConnectedUsersList();
+        }
+
+    });
+
+    // send list of current users
+    function emitConnectedUsersList() {
+        io.sockets.emit('registeredUsers', {
+            users: users
+        });
+    }
 
 })
 
