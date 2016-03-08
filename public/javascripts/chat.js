@@ -16,11 +16,6 @@ $(function () {
         $('#mainDiv').show();
     });
 
-    // send new chat msg to server
-    $('#sendMsgBtn').click(function () {
-        sendNewChatMsg();
-    });
-
     // show new chat msg from server
     socket.on('newChatMsgFromServer', function (data) {
         showNewChatMsg(data.chatMsg);
@@ -44,7 +39,7 @@ function registerNewUser() {
 // show all connected users in table
 function populateUsersList(users) {
 
-    $('#userCount').html('[' + users.length + ']');
+    $('#userCount').html('<b>[' + users.length + ']</b>');
     for (var user in users) {
         var row = '<li>' + users[user] + '</li>';
         $('#usersList').append(row);
@@ -52,19 +47,24 @@ function populateUsersList(users) {
 }
 
 // send new chat msg to server
-function sendNewChatMsg() {
+function sendNewChatMsg(e) {
 
-    var newChatMsg = $('#chatMsg').val();
-    newChatMsg = newChatMsg.trim();
+    // enter was hit
+    if (e.keyCode === 13) {
 
-    if (newChatMsg !== '') {
-        socket.emit('newChatMsgFromClient', {
-            chatMsg: newChatMsg
-        });
+        var newChatMsg = $('#chatMsgTextBox').val();
+        newChatMsg = newChatMsg.trim();
+
+        if (newChatMsg !== '') {
+            socket.emit('newChatMsgFromClient', {
+                chatMsg: newChatMsg
+            });
+        }
+
+        // clear the text box
+        $('#chatMsgTextBox').val('');
     }
 
-    // clear the text box
-    $('#chatMsg').val('');
 }
 
 // show new chat msg from server

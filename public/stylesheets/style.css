@@ -8,18 +8,27 @@ body {
     background: #f9f9f9;
 }
 
-#mainDiv {
-    display: none;
-}
+#mainDiv {}
 
 #chatDiv {
     border: 1px solid #ccc;
     border-radius: 10px;
     background: #f4f4f4;
+    padding-top: 20px;
 }
 
 #chatWindowDiv {
     height: 400px;
+}
+
+#chatMsgTextBox {
+    line-height: 4em;
+    border-radius: 10px;
+    border: 1px solid green;
+}
+
+#chatMsgTextBox:focus {
+    outline: none;
 }
 
 #usersDiv {
