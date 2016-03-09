@@ -101,4 +101,5 @@ function sendNewChatMsg(e) {
 // show new chat msg from server
 function showNewChatMsg(sender, msg) {
     $('#chatMsgs').append('<li><b>' + sender + '</b>: ' + msg + '</li>');
+    $("#chatMsgs").scrollTop(1000);
 }

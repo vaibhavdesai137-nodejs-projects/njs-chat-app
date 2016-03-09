@@ -11,7 +11,7 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Server is created here
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT || 8081);
 var server = http.createServer(app);
 var io = require('socket.io')(server);
 server.listen(app.get('port'), function () {

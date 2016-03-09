@@ -25,13 +25,15 @@ body {
 
 #chatMsgs {
     list-style: none;
-    padding-left: 10px;
+    padding-left: 20px;
+    padding-bottom: 20px;
     overflow-y: scroll;
     line-height: 25px;
+    max-height: 600px;
 }
 
 #chatWindowDiv {
-    height: 400px;
+    height: 600px;
 }
 
 #chatMsgTextBox {
