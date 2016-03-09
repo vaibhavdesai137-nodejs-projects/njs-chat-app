@@ -100,6 +100,15 @@ function sendNewChatMsg(e) {
 
 // show new chat msg from server
 function showNewChatMsg(sender, msg) {
-    $('#chatMsgs').append('<li><b>' + sender + '</b>: ' + msg + '</li>');
+
+    var text;
+    if (sender === username) {
+        text = '<li style="color: #153eae"><b>' + sender + '</b>: ' + msg + '</li>';
+    } else {
+        text = '<li><b>' + sender + '</b>: ' + msg + '</li>';
+    }
+
+
+    $('#chatMsgs').append(text);
     $("#chatMsgs").scrollTop(1000);
 }
