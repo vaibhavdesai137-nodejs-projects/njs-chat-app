@@ -11,7 +11,7 @@ app.set('view engine', 'jade');
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Server is created here
-app.set('port', process.env.PORT || 8081);
+app.set('port', process.env.PORT || 8080);
 var server = http.createServer(app);
 var io = require('socket.io')(server);
 server.listen(app.get('port'), function () {
@@ -26,6 +26,8 @@ app.get('/', function (req, res) {
 var users = [];
 
 io.sockets.on('connection', function (socket) {
+
+    console.log('New user connected...');
 
     // new user joined
     socket.on('registerNewUser', function (data) {
@@ -66,6 +68,7 @@ io.sockets.on('connection', function (socket) {
     // new user joined
     socket.on('disconnect', function (data) {
 
+        console.log('User disconnected, username: ' + socket.username);
         var index = users.indexOf(socket.username);
         if (index !== -1) {
             users.splice(index, 1);
